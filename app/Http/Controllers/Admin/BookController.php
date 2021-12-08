@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Book;
+use App\Models\Category;
+use Illuminate\Support\Facades\Storage;
 class BookController extends Controller
 {
     /**
@@ -27,6 +29,8 @@ class BookController extends Controller
     public function create()
     {
         //
+        $cate = Category::all();
+        return view("admin.book.create",['cate'=>$cate]);
     }
 
     /**
@@ -37,7 +41,21 @@ class BookController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        $book = new Book();
+        $book->name = $request->name;
+        $book->short_description = $request->short_description;
+        $book->price = $request->price;
+        $book->category_id = $request->category_id;
+        $image = $request->image;
+        $name_image = time()."_".$image->getClientOriginalName();
+        $path = $request->file('image')->storeAS(
+            "public/uploads",$name_image
+        );
+        $book->image = "storage/uploads/".$name_image;
+
+        $book->save();
+        return redirect()->route("book-admin.index");
     }
 
     /**
