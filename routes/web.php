@@ -36,5 +36,8 @@ Route::group(['middleware' => 'Check_login_admin'], function() {
     Route::get("/home-admin",'Admin\HomeController@index')->name("home.admin");
     Route::get("/logout-admin",'Admin\LogoutController@logout')->name("logout.admin");
     Route::resource("/category-admin",'Admin\CategoryController');
-    Route::resource("/book-admin",'Admin\BookController');    
+    Route::resource("/book-admin",'Admin\BookController'); 
+    Route::resource("/user-admin",'Admin\UserController')->only(['index','destroy']);    
 });
+
+Route::get('/database-demo', 'DemodatabaseController@index');

@@ -52,6 +52,18 @@
           <li><a class="link_name" href="{{route('book-admin.index')}}">Book</a></li>
         </ul>
       </li>
+      <li>
+        <div class="iocn-link">
+          <a href="{{route('user-admin.index')}}">
+            <i class='bx bx-book-alt' ></i>
+            <span class="link_name">User Manager</span>
+          </a>
+          <i class='bx bxs-chevron-down arrow' ></i>
+        </div>
+        <ul class="sub-menu">
+          <li><a class="link_name" href="{{route('user-admin.index')}}">User Manager</a></li>
+        </ul>
+      </li>
       <!-- <li>
         <div class="iocn-link">
           <a href="#">

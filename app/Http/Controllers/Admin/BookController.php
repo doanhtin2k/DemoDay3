@@ -106,6 +106,7 @@ class BookController extends Controller
             $path = $request->file('image')->storeAS(
                 "public/uploads",$name_image
             );
+            dd($path);
             // xoa anh cu
             // $image_old = explode("/",$book->image);
             // Storage::delete($image_old[1]."/".$image_old[2]);
