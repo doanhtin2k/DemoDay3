@@ -53,10 +53,7 @@
 		
 				<div class="mt-4">
 					<div class="d-flex justify-content-center links">
-						Don't have an account? <a href="#" class="ml-2">Sign Up</a>
-					</div>
-					<div class="d-flex justify-content-center links">
-						<a href="#">Forgot your password?</a>
+						Don't have an account? <a href="{{route('form.register.admin')}}" class="ml-2">Sign Up</a>
 					</div>
 				</div>
 			</div>

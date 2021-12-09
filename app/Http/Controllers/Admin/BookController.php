@@ -78,6 +78,9 @@ class BookController extends Controller
     public function edit($id)
     {
         //
+        $cate = Category::all();
+        $book = Book::findOrFail($id);
+        return view("admin.book.edit",['book'=>$book,'cate'=>$cate]);
     }
 
     /**
@@ -90,6 +93,30 @@ class BookController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $book = Book::findOrFail($id);
+        $book->name = $request->name;
+        $book->short_description = $request->short_description;
+        $book->price = $request->price;
+        $book->category_id = $request->category_id;
+        $image = $request->image;
+        // dd($image);
+        if($image!=null)
+        {
+            $name_image = time()."_".$image->getClientOriginalName();
+            $path = $request->file('image')->storeAS(
+                "public/uploads",$name_image
+            );
+            // xoa anh cu
+            // $image_old = explode("/",$book->image);
+            // Storage::delete($image_old[1]."/".$image_old[2]);
+
+
+            $book->image = "storage/uploads/".$name_image;
+        }
+       
+
+        $book->save();
+        return redirect()->route("book-admin.index");
     }
 
     /**
@@ -101,5 +128,8 @@ class BookController extends Controller
     public function destroy($id)
     {
         //
+        $book = Book::findOrFail($id);       
+        $book->delete();
+        return redirect()->back();
     }
 }

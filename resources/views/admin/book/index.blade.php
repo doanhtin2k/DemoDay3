@@ -31,6 +31,14 @@ Danh sách sách
       <td>{{$book->created_at}}</td>
       <td>{{$book->updated_at}}</td>
       <td>
+      <a href="{{route('book-admin.edit',[$book->id])}}" class="btn btn-warning" style="display:block ; width:80px" >Edit</a>
+          <form action="{{route('book-admin.destroy',[$book->id])}}" method="POST" >
+                            @method('DELETE')
+                            @csrf
+                            <button type="submit" class="btn btn-danger btn-sm mb-2" onclick="return confirm('ban chac chan muon xoa')" style="margin-top:10px ; width:80px;display:block">
+                                    Delete
+                            </button>
+          </form>
       </td>
     </tr>
     @endforeach
