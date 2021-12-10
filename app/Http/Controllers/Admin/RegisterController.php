@@ -23,6 +23,11 @@ class RegisterController extends Controller
     }
     public function register(Request $request)
     {
+        $request->validate([
+            'username' => 'required',
+            'password' => 'required',
+            "email"=>"required||email",
+            ]);
         //dd($request->all());
        $this->create($request->all());
        return redirect()->route("form.login.admin");

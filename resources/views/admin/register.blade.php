@@ -26,6 +26,9 @@
       <label class="control-label"  for="username">Username</label>
       <div class="controls">
         <input type="text" id="username" name="username" placeholder="" class="input-xlarge">
+        @if ($errors->has('username'))
+         							<small id="emailHelp" class="form-text text-muted"><b style="color:red">{{$errors->first("username")}}</b></small>
+    						@endif
       </div>
     </div>
  
@@ -34,6 +37,11 @@
       <label class="control-label" for="email">E-mail</label>
       <div class="controls">
         <input type="text" id="email" name="email" placeholder="" class="input-xlarge">
+        <div>
+          @if ($errors->has('email'))
+                        <small id="emailHelp" class="form-text text-muted"><b style="color:red">{{$errors->first("email")}}</b></small>
+                  @endif
+        </div> 
       </div>
     </div>
  
@@ -42,6 +50,11 @@
       <label class="control-label" for="password">Password</label>
       <div class="controls">
         <input type="password" id="password" name="password" placeholder="" class="input-xlarge">
+        <div>
+        @if ($errors->has('password'))
+         							<small id="emailHelp" class="form-text text-muted"><b style="color:red">{{$errors->first("password")}}</b></small>
+    						@endif
+        </div>
       </div>
     </div>
 

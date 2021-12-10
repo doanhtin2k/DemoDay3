@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Book;
 use App\Models\Category;
+use Illuminate\Support\Collection;
 class HomeController extends Controller
 {
     /**
@@ -25,7 +26,23 @@ class HomeController extends Controller
     public function index()
     {
         $books = Book::paginate(10);
-        $cates =Category::all();
+        $cates = Category::all();
         return view('home',['books'=>$books,'cates'=>$cates]);
+    }
+    public function category($title)
+    {
+
+        $cates = Category::all();
+
+        // dd("$title");
+        $books = Book::with(["category"=>function($query) use ($title){
+                $query->Where("title","$title");
+        }])->get();
+        // dd($books);
+        $books = collect($books);
+        $books = $books->filter(function ($value, $key){
+            return $value->category != null;//"danh muc 1"
+        });
+        return view("category",["books"=>$books,"title"=>$title,'cates'=>$cates]);
     }
 }

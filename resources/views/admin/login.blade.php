@@ -30,13 +30,27 @@
 							<div class="input-group-append">
 								<span class="input-group-text"><i class="fas fa-user"></i></span>
 							</div>
-							<input type="text" name="username" class="form-control input_user" value="" placeholder="username">
+							<div>
+								<input type="text" name="username" class="form-control input_user" value="" placeholder="username">
+							</div>
+							
+								@if ($errors->has('username'))
+										<small id="emailHelp" class="form-text text-muted"><b style="color:red">{{$errors->first("username")}}</b></small>
+								@endif
+							
 						</div>
 						<div class="input-group mb-2">
 							<div class="input-group-append">
 								<span class="input-group-text"><i class="fas fa-key"></i></span>
 							</div>
-							<input type="password" name="password" class="form-control input_pass" value="" placeholder="password">
+							<div>
+								<input type="password" name="password" class="form-control input_pass" value="" placeholder="password">
+							</div>
+							   <div>
+									@if ($errors->has('password'))
+											<small id="emailHelp" class="form-text text-muted"><b style="color:red">{{$errors->first("password")}}</b></small>
+									@endif
+                               </div>
 						</div>
 						<div class="form-group">
 							<div class="custom-control custom-checkbox">

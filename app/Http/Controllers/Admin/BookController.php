@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Book;
 use App\Models\Category;
 use Illuminate\Support\Facades\Storage;
+use App\Http\Requests\StoreBookRequest;
 class BookController extends Controller
 {
     /**
@@ -39,9 +40,14 @@ class BookController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreBookRequest $request)
     {
-
+        // $request->validate([
+        //     'name' => 'required',
+        //     'short_description' => 'required',
+        //     'price' => 'required|numberic',
+        //     'image' => 'required',
+        //     ]);
         $book = new Book();
         $book->name = $request->name;
         $book->short_description = $request->short_description;
@@ -93,6 +99,11 @@ class BookController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $request->validate([
+            'name' => 'required',
+            'short_description' => 'required',
+            'price' => 'required|numeric||min:0',
+            ]);
         $book = Book::findOrFail($id);
         $book->name = $request->name;
         $book->short_description = $request->short_description;

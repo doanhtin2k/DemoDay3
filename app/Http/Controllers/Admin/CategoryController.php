@@ -39,6 +39,10 @@ class CategoryController extends Controller
     public function store(Request $request)
     {
         //
+        $request->validate([
+            'title' => 'required',
+            'description' => 'required',
+            ]);
         $category = new Category();
         $category->title = $request->title;
         $category->description = $request->description;
@@ -80,6 +84,10 @@ class CategoryController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $request->validate([
+            'title' => 'required',
+            'description' => 'required',
+            ]);
         $category =Category::findOrFail($id);
         $category->title = $request->title;
         $category->description = $request->description;
