@@ -20,8 +20,15 @@ Route::get('/', function () {
 Auth::routes(['verify' => true]);
 
 Route::get('/home', 'HomeController@index')->name('home')->middleware('verified');
-Route::get('/home/category/{title}', 'HomeController@category')->name('category.user');
 
+
+Route::group(['middleware' => 'auth'], function() {
+    Route::get('/home/category/{title}', 'HomeController@category')->name('category.user');
+    Route::get('/home/cart', 'CartController@index')->name('cart.user');
+    Route::get('/add-to-cart', 'CartController@addToCart')->name('add_to_cart.user');
+    Route::get('/bill', 'BillController@index')->name('bill.index.user');
+    Route::post('/bill', 'BillController@create')->name('bill.create.user');
+});
 
 
 Route::group(['middleware' => 'Check_logout_admin'], function() {
