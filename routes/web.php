@@ -17,9 +17,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Auth::routes();
+Auth::routes(['verify' => true]);
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home', 'HomeController@index')->name('home')->middleware('verified');
 Route::get('/home/category/{title}', 'HomeController@category')->name('category.user');
 
 
@@ -29,6 +29,12 @@ Route::group(['middleware' => 'Check_logout_admin'], function() {
     Route::post('/register-admin', 'Admin\RegisterController@register')->name('register.admin');
     Route::get('/login-admin', 'Admin\LoginController@index')->name('form.login.admin');
     Route::post('/login-admin', 'Admin\LoginController@login')->name('login.admin');
+
+    Route::post("/admin/password/email",'Admin\ForgotPasswordController@sendResetLinkEmail')->name("password.email.admin");
+    Route::post("/admin/password/reset",'Admin\ResetPasswordController@reset')->name("password.update.admin");
+
+    Route::get("/admin/password/reset",'Admin\ForgotPasswordController@showLinkRequestForm')->name("password.request.admin");
+    Route::get("/admin/password/reset/{token}",'Admin\ResetPasswordController@showResetForm')->name("password.reset.admin");
 });
 
 
@@ -36,8 +42,16 @@ Route::group(['middleware' => 'Check_login_admin'], function() {
     Route::get("/home-admin",'Admin\HomeController@index')->name("home.admin");
     Route::get("/logout-admin",'Admin\LogoutController@logout')->name("logout.admin");
     Route::resource("/category-admin",'Admin\CategoryController');
-    Route::resource("/book-admin",'Admin\BookController'); 
-    Route::resource("/user-admin",'Admin\UserController')->only(['index','destroy']);    
+    Route::resource("/book-admin",'Admin\BookController');
+    Route::resource("/user-admin",'Admin\UserController')->only(['index','destroy']);
 });
 
 Route::get('/database-demo', 'DemodatabaseController@index');
+// Route::get('/sendmail-demo', 'DemoSendMailController@index');
+
+
+
+
+Route::get('/task', 'TaskController@index')->name('index');
+Route::post('/task', 'TaskController@store')->name('store.task');
+Route::delete('/task/{task}', 'TaskController@delete')->name('delete.task');

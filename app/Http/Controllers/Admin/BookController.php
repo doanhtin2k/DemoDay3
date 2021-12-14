@@ -8,6 +8,8 @@ use App\Models\Book;
 use App\Models\Category;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\StoreBookRequest;
+use  Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Support\Collection;
 class BookController extends Controller
 {
     /**
@@ -18,7 +20,11 @@ class BookController extends Controller
     public function index()
     {
         //
-        $books = Book::paginate(5);
+        $items = Book::all();
+        $total = count($items);
+        $books = new LengthAwarePaginator($items->forPage(1, 5), $items->count(), 5, null, [ "path" => "http://127.0.0.1:8000/book-admin","pageName" => "page"]);
+        //$books = new LengthAwarePaginator($itemstoshow,3,5,null,[ "path" => "http://127.0.0.1:8000/book-admin","pageName" => "page"]);
+        dd($books);
         return view("admin.book.index",['books'=>$books]);
     }
 
@@ -125,7 +131,7 @@ class BookController extends Controller
 
             $book->image = "storage/uploads/".$name_image;
         }
-       
+
 
         $book->save();
         return redirect()->route("book-admin.index");
@@ -140,7 +146,7 @@ class BookController extends Controller
     public function destroy($id)
     {
         //
-        $book = Book::findOrFail($id);       
+        $book = Book::findOrFail($id);
         $book->delete();
         return redirect()->back();
     }

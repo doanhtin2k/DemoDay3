@@ -5,7 +5,7 @@
 
 <!DOCTYPE html>
 <html>
-    
+
 <head>
 	<title>My Awesome Login Page</title>
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
@@ -33,11 +33,11 @@
 							<div>
 								<input type="text" name="username" class="form-control input_user" value="" placeholder="username">
 							</div>
-							
+
 								@if ($errors->has('username'))
 										<small id="emailHelp" class="form-text text-muted"><b style="color:red">{{$errors->first("username")}}</b></small>
 								@endif
-							
+
 						</div>
 						<div class="input-group mb-2">
 							<div class="input-group-append">
@@ -64,11 +64,14 @@
 				   </div>
 					</form>
 				</div>
-		
+
 				<div class="mt-4">
 					<div class="d-flex justify-content-center links">
 						Don't have an account? <a href="{{route('form.register.admin')}}" class="ml-2">Sign Up</a>
 					</div>
+                    <div class="d-flex justify-content-center links">
+                        <a href="{{route('password.request.admin')}}">Forgot your password?</a>
+                    </div>
 				</div>
 			</div>
 		</div>

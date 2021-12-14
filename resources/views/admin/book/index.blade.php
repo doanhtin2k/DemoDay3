@@ -42,7 +42,7 @@ Danh sách sách
       </td>
     </tr>
     @endforeach
-  
+
   </tbody>
 </table>
 <div>
