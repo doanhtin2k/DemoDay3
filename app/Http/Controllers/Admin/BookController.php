@@ -20,11 +20,12 @@ class BookController extends Controller
     public function index()
     {
         //
-        $items = Book::all();
-        $total = count($items);
-        $books = new LengthAwarePaginator($items->forPage(1, 5), $items->count(), 5, null, [ "path" => "http://127.0.0.1:8000/book-admin","pageName" => "page"]);
-        //$books = new LengthAwarePaginator($itemstoshow,3,5,null,[ "path" => "http://127.0.0.1:8000/book-admin","pageName" => "page"]);
-        dd($books);
+//        $items = Book::all();
+//        $total = count($items);
+//        $books = new LengthAwarePaginator($items->forPage(1, 5), $items->count(), 5, null, [ "path" => "http://127.0.0.1:8000/book-admin","pageName" => "page"]);
+//        //$books = new LengthAwarePaginator($itemstoshow,3,5,null,[ "path" => "http://127.0.0.1:8000/book-admin","pageName" => "page"]);
+//        dd($books);
+        $books = Book::paginate(5);
         return view("admin.book.index",['books'=>$books]);
     }
 
