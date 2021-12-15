@@ -8,7 +8,7 @@ class Bill extends Model
 {
     //
     protected $fillable = [
-        'address', 'numberphone','totalItem','user_id','totalPrice',
+       'address', 'numberphone','totalItem','user_id','totalPrice',
     ];
     public function  user()
     {

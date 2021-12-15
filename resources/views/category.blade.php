@@ -14,6 +14,7 @@
                 @endforeach
                     <a  class="nav-item nav-link" href="{{route('cart.user')}}"><b>Giỏ Hàng</b> <span class="sr-only">(current)</span></a>
                     <a  class="nav-item nav-link" href="{{route('bill.history.user')}}"><b>History Bill</b> <span class="sr-only">(current)</span></a>
+
             </div>
         </div>
             <div class="alert alert-success alert-add-to-cart" role="alert">

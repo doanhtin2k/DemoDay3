@@ -10,6 +10,8 @@ use Illuminate\Http\Request;
 use DB;
 use Auth;
 use App\Models\Bill;
+use App\Notifications\OrderSuccess;
+
 class BillController extends Controller
 {
     //
@@ -59,6 +61,7 @@ class BillController extends Controller
                     $order->book_id = $cart["book"]->id;
                     $order->bill_id = $bill->id;
                     $order->save();
+                    Auth::user()->notify(new OrderSuccess($bill));
                 }
                 // remove item in carts session
             session(["carts" => []]);

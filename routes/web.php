@@ -30,6 +30,7 @@ Route::group(['middleware' => 'auth'], function() {
     Route::post('/bill', 'BillController@create')->name('bill.create.user');
     Route::get('/bill/history', 'BillController@history')->name('bill.history.user');
     Route::get('/bill/history/{id}', 'BillController@show')->name('bill.history.details.user');
+    Route::get('/notification/details/{id}', 'NotificationController@show')->name('notification.details.user');
 });
 
 
@@ -65,3 +66,4 @@ Route::get('/database-demo', 'DemodatabaseController@index');
 Route::get('/task', 'TaskController@index')->name('index');
 Route::post('/task', 'TaskController@store')->name('store.task');
 Route::delete('/task/{task}', 'TaskController@delete')->name('delete.task');
+Route::get('/demo-notification', 'DemoNotificationController@index');

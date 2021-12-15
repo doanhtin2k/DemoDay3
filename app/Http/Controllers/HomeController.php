@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Book;
 use App\Models\Category;
+use Auth;
 use Illuminate\Support\Collection;
 class HomeController extends Controller
 {
@@ -16,6 +17,7 @@ class HomeController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
+
     }
 
     /**
@@ -27,7 +29,8 @@ class HomeController extends Controller
     {
         $books = Book::paginate(10);
         $cates = Category::all();
-        return view('home',['books'=>$books,'cates'=>$cates]);
+        $notifications = Auth::user()->notifications;
+        return view('home',['books'=>$books,'cates'=>$cates,"notifications" => $notifications]);
     }
     public function category($title)
     {

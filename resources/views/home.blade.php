@@ -14,7 +14,22 @@
                 @endforeach
              <a class="nav-item nav-link active" href="{{route('cart.user')}}"><b>Giỏ Hàng</b> <span class="sr-only">(current)</span></a>
              <a  class="nav-item nav-link" href="{{route('bill.history.user')}}"><b>History Bill</b> <span class="sr-only">(current)</span></a>
+                    <div class="dropdown">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Thông báo
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            @foreach($notifications as $notification)
+                                @if($notification->read_at != null)
+                                <a class="dropdown-item" href="{{route('notification.details.user',[$notification->id])}}" style="background: green">{{"đặt hàng thành công lúc: ".$notification->created_at }}</a>
 
+                                    @else
+                                        <a class="dropdown-item" href="{{route('notification.details.user',[$notification->id])}}" style="background: red">{{"đặt hàng thành công lúc: ".$notification->created_at }}</a>
+                                @endif
+                            @endforeach
+
+                        </div>
+                    </div>
             </div>
         </div>
             <div class="alert alert-success alert-add-to-cart" role="alert">
