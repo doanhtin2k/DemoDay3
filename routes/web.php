@@ -28,6 +28,8 @@ Route::group(['middleware' => 'auth'], function() {
     Route::get('/add-to-cart', 'CartController@addToCart')->name('add_to_cart.user');
     Route::get('/bill', 'BillController@index')->name('bill.index.user');
     Route::post('/bill', 'BillController@create')->name('bill.create.user');
+    Route::get('/bill/history', 'BillController@history')->name('bill.history.user');
+    Route::get('/bill/history/{id}', 'BillController@show')->name('bill.history.details.user');
 });
 
 
@@ -51,6 +53,7 @@ Route::group(['middleware' => 'Check_login_admin'], function() {
     Route::resource("/category-admin",'Admin\CategoryController');
     Route::resource("/book-admin",'Admin\BookController');
     Route::resource("/user-admin",'Admin\UserController')->only(['index','destroy']);
+    Route::get("/bill-admin",'Admin\BillController@index')->name("bill.index.admin");
 });
 
 Route::get('/database-demo', 'DemodatabaseController@index');

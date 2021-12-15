@@ -18,24 +18,34 @@
             </div>
         </nav>
         <div>
-            <h1 style="text-align: Center; color:green">Thanh toán</h1>
+            <h1 style="text-align: Center; color:green">Lịch sử mua hàng</h1>
             <div>
-                <form action="{{route("bill.create.user")}}" method="POST">
-                    @csrf
-                    <div class="form-group">
-                        <label for="exampleInputEmail1">Địa chỉ người nhận</label>
-                        <input type="text" name="address" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-                    </div>
-                    <div class="form-group">
-                        <label for="exampleInputEmail1">Số điện thoại</label>
-                        <input type="text" name="numberPhone" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-                    </div>
-                    <h2>Tổng số sản phẩm: {{$totalItem}}</h2>
-                    <div class="alert alert-success" role="alert">
-                        Tổng tiền: {{$totalPrice}}
-                    </div>
-                    <button type="submit" class="btn btn-primary">Access</button>
-                </form>
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th scope="col">id</th>
+                        <th scope="col">username</th>
+                        <th scope="col">address</th>
+                        <th scope="col">numberPhone</th>
+                        <th scope="col">totalItem</th>
+                        <th scope="col">Xem Chi tiết</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    @foreach($bills AS $bill)
+                    <tr>
+                        <th scope="row">{{$bill->id}}</th>
+                        <td>{{$bill->user->username}}</td>
+                        <td>{{$bill->address}}</td>
+                        <td>{{$bill->numberphone}}</td>
+                        <td>{{$bill->totalItem}}</td>
+                        <td>
+                            <a href="{{route('bill.history.details.user',[$bill->id])}}" class="btn btn-success">Details</a>
+                        </td>
+                    </tr>
+                    @endforeach
+                    </tbody>
+                </table>
             </div>
         </div>
 

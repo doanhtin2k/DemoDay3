@@ -13,15 +13,17 @@
                         <a class="nav-item nav-link active" href="{{route('category.user',[$cate->title])}}"><b>{{$cate->title}}</b> <span class="sr-only">(current)</span></a>
                     @endforeach
                     <a class="nav-item nav-link active" href="{{route('cart.user')}}"><b>Giỏ Hàng</b> <span class="sr-only">(current)</span></a>
+                    <a  class="nav-item nav-link" href="{{route('bill.history.user')}}"><b>History Bill</b> <span class="sr-only">(current)</span></a>
                 </div>
             </div>
         </nav>
-        <div class="row">
+        <div>
             <table class="table">
                 <thead>
                 <tr>
                     <th scope="col">Book_id</th>
                     <th scope="col">Tên sách</th>
+                    <th scope="col">Giá sách</th>
                     <th scope="col">số lượng</th>
                 </tr>
                 </thead>
@@ -30,12 +32,18 @@
                    <tr>
                        <th scope="row">{{$key}}</th>
                        <td>{{$cart['book']->name}}</td>
+                       <td>{{$cart['book']->price}}</td>
                        <td>{{$cart['quantity']}}</td>
                    </tr>
                @endforeach
                 </tbody>
             </table>
-            <a href="{{route("bill.index.user")}}" class="btn btn-success">Thanh toán</a>
+            <div class="alert alert-success" role="alert">
+                Tổng tiền: {{$totalPrice}}
+            </div>
+            <div>
+                <a href="{{route("bill.index.user")}}" class="btn btn-success">Thanh toán</a>
+            </div>
         </div>
 
     </div>

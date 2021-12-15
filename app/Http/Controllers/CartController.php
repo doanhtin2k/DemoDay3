@@ -14,9 +14,13 @@ class CartController extends Controller
         {
             $carts = session("carts");
         }
+        $totalPrice=0;
+        foreach ($carts as $cart)
+        {
+            $totalPrice += $cart['book']['price'] * $cart["quantity"];
+        }
         $cates = Category::all();
-        return view("cart.index",["cates" => $cates, "carts" => $carts]);
-
+        return view("cart.index",["cates" => $cates, "carts" => $carts, "totalPrice" => $totalPrice]);
     }
     public function addToCart(Request $request)
     {

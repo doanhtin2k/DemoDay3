@@ -8,12 +8,12 @@
     <!-- Boxiocns CDN Link -->
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-     
+
      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
      <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-<link href="{{asset('css/admin/dashboard.css')}}" rel='stylesheet'>   
+<link href="{{asset('css/admin/dashboard.css')}}" rel='stylesheet'>
 </head>
 <body>
   <div class="sidebar close">
@@ -64,6 +64,18 @@
           <li><a class="link_name" href="{{route('user-admin.index')}}">User Manager</a></li>
         </ul>
       </li>
+        <li>
+            <div class="iocn-link">
+                <a href="{{route('bill.index.admin')}}">
+                    <i class='bx bx-book-alt' ></i>
+                    <span class="link_name">Bill Manager</span>
+                </a>
+                <i class='bx bxs-chevron-down arrow' ></i>
+            </div>
+            <ul class="sub-menu">
+                <li><a class="link_name" href="{{route('bill.index.admin')}}">Bill Manager</a></li>
+            </ul>
+        </li>
       <!-- <li>
         <div class="iocn-link">
           <a href="#">

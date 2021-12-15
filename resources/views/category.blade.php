@@ -13,6 +13,7 @@
             <a class="nav-item nav-link active" href="{{route('category.user',[$cate->title])}}"><b>{{$cate->title}}</b> <span class="sr-only">(current)</span></a>
                 @endforeach
                     <a  class="nav-item nav-link" href="{{route('cart.user')}}"><b>Giỏ Hàng</b> <span class="sr-only">(current)</span></a>
+                    <a  class="nav-item nav-link" href="{{route('bill.history.user')}}"><b>History Bill</b> <span class="sr-only">(current)</span></a>
             </div>
         </div>
             <div class="alert alert-success alert-add-to-cart" role="alert">
@@ -25,6 +26,8 @@
                 <img class="card-img-top" src="{{asset($book->image)}}" alt="Card image cap">
                 <div class="card-body">
                     <h5 class="card-title">{{$book->name}}</h5>
+                    <h5 class="card-title">{{$book->name}}</h5>
+                    <h5 class="card-title">Price: {{$book->price}}</h5>
                     <p class="card-text">{{$book->short_description}}</p>
                     <p class="card-text">Danh muc:{{$book->category->title}}</p>
                     <a class="btn btn-primary active add-to-cart" data-id="{{$book->id}}">Add to cart</a>
