@@ -4,8 +4,11 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
+use App\User;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
-
+use Laravel\Socialite\Facades\Socialite;
+use Auth;
+use Illuminate\Support\Facades\Hash;
 class LoginController extends Controller
 {
     /*
@@ -40,5 +43,31 @@ class LoginController extends Controller
     public function username()
     {
         return 'username';
+    }
+    public function redirectToGoogle()
+    {
+        return Socialite::driver('google')->redirect();
+    }
+    public function handleGoogleCallback()
+    {
+        $user = Socialite::driver('google')->user();
+        $this->_registerOrLoginUser($user);
+        return redirect()->route("home");
+        //dd($user);
+        // $user->token;
+    }
+    public function _registerOrLoginUser($data)
+    {
+        $user = User::Where("email",$data->email)->first();
+        if(!$user)
+        {
+            $user = new User();
+            $user->username = $data->name;
+            $user->email = $data->email;
+            $user->password =  Hash::make('12345678');
+            $user->provider_id = $data->id;
+            $user->save();
+        }
+        Auth::login($user);
     }
 }

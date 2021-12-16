@@ -64,6 +64,9 @@
                                 @endif
                             </div>
                         </div>
+                        <div>
+                            <a href="{{route("login.google")}}">Login with google</a>
+                        </div>
                     </form>
                 </div>
             </div>

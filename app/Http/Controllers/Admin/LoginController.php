@@ -19,22 +19,7 @@ class LoginController extends Controller
             'username' => 'required',
             'password' => 'required',
             ]);
-         $error="";
-        // $admin = Admin::Where('username',$request->username)->first();
-        // if(empty($admin))
-        // {
-        //     $error="username khong ton tai";
-        //     return view('admin.login',['error'=>$error]);
-        // }else{
-        //     if($admin->password==$request->password)
-        //     {
-        //            session(['admin'=>$admin]);
-        //            return redirect()->route('home.admin');
-        //     }else{
-        //         $error="sai mat khau";
-        //         return view('admin.login',['error'=>$error]);  
-        //     }
-        // }
+
         $arr = [
             'username' => $request->username,
             'password' => $request->password,
@@ -44,7 +29,7 @@ class LoginController extends Controller
             return redirect()->route("home.admin");
         } else {
             $error="sai tai khoan hoac mat khau";
-            return view('admin.login',['error'=>$error]);          
+            return view('admin.login',['error'=>$error]);
         }
 
     }
