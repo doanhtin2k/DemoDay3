@@ -1,10 +1,12 @@
 $(document).ready(function(){
+
     $(".add-to-cart").click(function(){
+        console.log(location.origin);
 
          var book_id = $(this).attr("data-id");
         console.log(book_id);
         var obj_ajax = {
-            url: 'http://127.0.0.1:8000/add-to-cart',
+            url: location.origin+'/add-to-cart',
             method: 'GET',
             data: {
                 book_id:book_id
