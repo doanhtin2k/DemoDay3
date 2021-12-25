@@ -2,6 +2,9 @@
 
 use Illuminate\Support\Facades\Route;
 
+
+use App\Http\Resources\BookResource;
+use \App\Models\Book;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -72,3 +75,13 @@ Route::get('/task', 'TaskController@index')->name('index');
 Route::post('/task', 'TaskController@store')->name('store.task');
 Route::delete('/task/{task}', 'TaskController@delete')->name('delete.task');
 Route::get('/demo-notification', 'DemoNotificationController@index');
+
+
+
+Route::get('/book-resource', function () {
+    return new BookResource(Book::find(1));
+});
+
+Route::get('/book-resource-collection', function () {
+    return BookResource::collection(Book::all());
+});
